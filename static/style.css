@@ -159,10 +159,7 @@ img {
   margin: 0 auto !important;
 }
 .panel-map > div:nth-child(2) > div:nth-child(2) {
-  height: 10em;
-  text-align: left;
-  overflow-y: scroll;
-  overflow-x: hidden;
+  height: 14em;
 }
 .panel-map > div:nth-child(2) > div:nth-child(2) > div  {
   margin-top: 1em;
