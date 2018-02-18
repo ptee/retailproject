@@ -19,47 +19,6 @@ $(document).on('focus', '.panel-footer input.chat_input', function (e) {
     }
 });
 
-$(document).on('click', '.badge-suggestions', function(e) {
-  var data_name = $(this).attr('data-name');
-  var url = 'http://127.0.0.1:5000/message'; 
-  var data = {userMessage: data_name};
-
-  // fetch(url, {
-  //     method: 'POST', // or 'PUT'
-  //     body: JSON.stringify(data),
-  //     headers: new Headers({
-  //     'Content-Type': 'application/json'
-  //     })
-  //   }).then(function(response) { return response.json(); })
-  // .then(function(data) {
-
-  //   console.log(data)
-  // })
-
-  $.ajax({
-    type: "POST",
-    url: url,
-    data: JSON.stringify(data),
-    success: function(response1) {
-      var newImg = '../static/' + response1.imgName + ".png";
-      console.log(response1);
-      $('#main_img').attr('src',newImg);
-
-      // append tags
-      $('#append_tags').html('<span data-name="'+response1.sim1Name+'" class="badge-suggestions badge badge-pill badge-primary"> <img src="../static/img/'+response1.sim1Name+'.png" /> '+response1.sim1Name+' </span> <span data-name="'+response1.sim2Name+'" class="badge-suggestions badge badge-pill badge-primary"> <img src="../static/img/'+response1.sim2Name+'.png" /> '+response1.sim2Name+' </span> <span data-name="'+response1.sim3Name+'" class="badge-suggestions badge badge-pill badge-primary"> <img src="../static/img/'+response1.sim3Name+'.png" /> '+response1.sim3Name+' </span> <span data-name="'+response1.sim3Name+'" class="badge-suggestions badge badge-pill badge-primary"> <img src="../static/img/'+response1.sim4Name+'.png" /> '+response1.sim4Name+' </span> <span data-name="'+response1.sim5Name+'" class="badge-suggestions badge badge-pill badge-primary"> <img src="../static/img/'+response1.sim5Name+'.png" /> '+response1.sim5Name+' </span>');
-      $('#append_tags_top').html('<div class="col-sm-12"><span class="badge badge-pill badge-primary"> '+response1.sim1Name+' $'+ response1.sim1Price +' </span></div> <div class="col-sm-12"><span class="badge badge-pill badge-primary"> '+response1.sim2Name+' $'+ response1.sim2Price +' </span></div> <div class="col-sm-12"><span class="badge badge-pill badge-primary"> '+response1.sim3Name+' $'+ response1.sim3Price +' </span></div> <div class="col-sm-12"><span class="badge badge-pill badge-primary"> '+response1.sim4Name+' $'+ response1.sim4Price +' </span></div> <div class="col-sm-12"><span class="badge badge-pill badge-primary"> '+response1.sim5Name+' $'+ response1.sim5Price +' </span></div>');
-    },
-    error: function(err) {
-      
-    },
-    contentType: 'application/json'
-  });
-
-
-
-
-});
-
 $(document).keypress(function(e) {
     if(e.which == 13) {
        sendToBackend();

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title> ShopMap </title>
+        <link rel="stylesheet" type="text/css" href="/static/style.css" />
+        <link href="https://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css" />
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css" rel="stylesheet" />
+        <style>
+        	.container {
+        		padding: 3em;
+        	}
+        	#container_pic {
+        		text-align: center;
+        	}
+        	#container_pic > img {
+        		width: 30%;
+        		margin: 0 auto !important;
+        	}
+        	#container_name {
+        		text-align: center;
+        		padding-top: 3em;
+        	}
+        	#container_name > span {
+        		font-size: 2em;
+        		display: block;
+        	}
+        	#container_name > button {
+        		margin-top: 1.5em;
+        		font-size: 1.2em;
+        	}
+        	#container_location {
+        		text-align: center;
+        	}
+        	#container_location > img {
+        		margin: 0 auto !important;
+        	}
+        </style>
+    </head>
+    <div class="container" id="container1">
+    	<div id='container_location'>
+    		<img src='/static/location.gif' />
+    	</div>
+    </div>
+    <div class="container hide" id="container2">
+    	<div id='container_pic'>
+    		<img src='/static/edeka.png' />
+    	</div>
+    	<div id='container_name'>
+    		<span> Hello, Welcome to <b>Edeka!</b> </span>
+    		<button class="btn btn-danger"> Start shopping </button>
+    	</div>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script type="text/javascript">
+    	setTimeout(function(){
+    		$('#container1').addClass('hide');
+    		$('#container2').removeClass('hide');
+    	},3000);
+    </script>
+</html>

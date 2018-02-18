@@ -8,8 +8,8 @@ width: 60%;
   margin: 0 auto;
 }
 .container {
-  height:auto;
-  width:100%;
+  height:80vh;
+  width:40vw;
   margin:0 auto;
 }
 .col-md-2, .col-md-10{
@@ -17,26 +17,19 @@ width: 60%;
     
 }
 .col-xs-12.col-md-12 {
-   height:auto;
+   height:80vh;
   width:40vw;
 
 }
 .panel{
     margin-bottom: 0px;
 }
-.panel-heading > div > img {
-  width: 30px;
-}
-.panel-heading > div > h3 {
-  display: inline-block;
-  margin-top: 0.5em;
-}
 .chat-window{
-  height:auto;
+  height:80vh;
   width:40vw;
 }
 .chat-window > div > .panel{
-  height:auto;
+  height:80vh;
   width:40vw;
   border-radius: 5px 5px 0 0;
 }
@@ -151,26 +144,4 @@ img {
     position:fixed;
     left:0px;
     bottom:0;
-}
-.panel-map {
-  text-align: center !important;
-}
-.panel-map > div > img {
-  margin: 0 auto !important;
-}
-.panel-map > div:nth-child(2) > div:nth-child(2) {
-  height: 10em;
-  text-align: left;
-  overflow-y: scroll;
-  overflow-x: hidden;
-}
-.panel-map > div:nth-child(2) > div:nth-child(2) > div  {
-  margin-top: 1em;
-}
-.badge > img {
-  width: 25px;
-}
-.badge {
-  margin-left: 10px;
-  cursor: pointer;
 }

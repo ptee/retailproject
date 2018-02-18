@@ -1,0 +1,179 @@
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+<meta http-equiv="Pragma" content="no-cache" />
+<meta http-equiv="Expires" content="0" />
+
+<head>
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+  <script src="https://d3js.org/d3.v4.min.js"></script>
+  <script src="http://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+</head>
+
+<div id="graph" style="width:95%;height:800px;"></div>
+
+<script>
+ 
+ TESTER = document.getElementById('graph');
+
+ var cnt = 0;
+ // @Note!!! in order to see the changes if no update of the database, adjust to some other numbers
+ //  The values from amount which was bought per week from DB or the remaining quantity of the day.
+ var apples = 130; 
+ var bananas = 230;
+ var pineapples= 153;
+ var berries=162;
+ var strawberries=79;
+ var mushrooms=111;
+ var melons=70;
+ 
+
+ // first reading
+ d3.csv("food_database.csv", function(data) {
+	data.forEach( function(d) {
+	  d.item = d["ITEM NAME"];
+	  d.quantity = +d["CURRENT QUANTITY"];
+
+	  if ( d.item == "apple" ) {
+		 apples = d.quantity;
+	  }
+	  if ( d.item == "banana" ) {
+		 bananas = d.quantity;
+	  }
+	  if ( d.item == "pineapples" ) {
+		 pineapples = d.quantity;
+	  }
+	  if ( d.item == "berries" ) {
+		 berries = d.quantity;
+	  }
+	  if ( d.item == "mushrooms" ) {
+		 mushrooms = d.quantity;
+	  }
+	  if ( d.item == "strawberries" ) {
+		 strawberries = d.quantity;
+	  }
+	  if ( d.item == "melon" ) {
+		 melons = d.quantity;
+	  }
+	  
+	});  // end for each
+ }); // end csv
+
+ 
+ var time = new Date();
+ var _data = [{
+	x:  [time],
+	y: [apples],
+	mode: 'lines',
+	line: {color: "#990000", width: 4},
+	name:'Apples'
+ }, {
+	x:  [time],
+	y: [bananas],
+	mode: 'lines',
+	line: {color: "#ffff00", width: 4},
+	name: 'Bananas'
+ }, {
+	x:  [time],
+	y: [pineapples],
+	mode: 'lines',
+	line: {color: "#b3b300", width: 4},
+	name: 'Pineapples'
+ }, {
+	x:  [time],
+	y: [berries],
+	mode: 'lines',
+	line: {color: "#660066", width: 4},
+	name: 'Berries'
+ } , {
+	x:  [time],
+	y: [mushrooms],
+	mode: 'lines',
+	line: {color: "#6b486b", width: 4},
+	name: 'Mushrooms'
+ } , {
+	x:  [time],
+	y: [strawberries],
+	mode: 'lines',
+	line: {color: "#ff0000", width: 4},
+	name: 'Strawberries'
+ } , {
+	x:  [time],
+	y: [melons],
+	mode: 'lines',
+	line: {color: "#00ff00", width: 4},
+	name: 'Melons'
+ }
+ ];
+
+ 
+ var layout =  {
+	title: '#Quantity in Inventory',
+	xaxis: {
+     title: 'time',
+     titlefont: {
+       family: 'Courier New, monospace',
+       size: 18,
+       color: '#7f7f7f'
+     }
+	},
+	yaxis: {
+     title: '#Amount',
+     titlefont: {
+       family: 'Courier New, monospace',
+       size: 18,
+       color: '#7f7f7f'
+     }
+	}
+ };
+ 
+ Plotly.plot('graph', _data, layout);
+ 
+
+ var interval = setInterval(function() {
+
+	// reading
+	d3.csv("food_database.csv", function(data) {
+	  data.forEach( function(d) {
+		 d.item = d["ITEM NAME"];
+		 d.quantity = +d["CURRENT QUANTITY"];
+		 if ( d.item == "apple" ) {
+			apples = d.quantity;
+		 }
+		 if ( d.item == "banana" ) {
+			bananas = d.quantity;
+		 }
+		 
+		 if ( d.item == "pineapples" ) {
+			pineapples = d.quantity;
+		 }
+		 
+		 if ( d.item == "berries" ) {
+			berries = d.quantity;
+		 }
+		 if ( d.item == "mushrooms" ) {
+			mushrooms = d.quantity;
+		 }
+		 if ( d.item == "strawberries" ) {
+			strawberries = d.quantity;
+		 }
+		 if ( d.item == "melon" ) {
+			melons = d.quantity;
+		 }
+
+	  });  // end for each
+	}); // end csv
+
+	var time = new Date();
+	var update = { 
+	  x:  [[time],   [time],    [time],       [time],    [time],    [time],          [time]],
+	  y: [[apples], [bananas], [pineapples], [berries], [mushrooms], [strawberries], [melons]]
+	};
+
+	Plotly.extendTraces('graph', update, [0,1,2,3,4,5,6])
+
+	// to see the recent data 
+	if(cnt === 100) clearInterval(interval);
+
+
+ }, 500); // 1 sec -> clear every 200 sec
+ 
+</script>
