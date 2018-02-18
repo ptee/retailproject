@@ -19,6 +19,21 @@ $(document).on('focus', '.panel-footer input.chat_input', function (e) {
     }
 });
 
+$(document).on('click', '.badge-suggestions', function(e) {
+  var data_name = $(this).attr('data-name');
+  var url = ' '; // TODO: @Robbie
+  $.ajax({
+    url: url,
+    cache: false,
+    success: function(data) {
+      // TODO: @ishan.
+    },
+    error: function(err) {
+      return;
+    }
+  });
+});
+
 $(document).keypress(function(e) {
     if(e.which == 13) {
        sendToBackend();
